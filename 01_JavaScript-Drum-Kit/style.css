@@ -1,0 +1,38 @@
+html {
+  background-image: url(piano-1655558_1920.jpg);
+}
+.keys{
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.key{
+  border: .1rem solid rgba(0, 0, 0, 0.664);
+  margin: .2rem;
+  padding: .2rem .3rem;
+  background-color: rgba(255, 255, 255, .8);
+  transition: all .07s;
+}
+
+.playing {
+  transform: scale(1,1);
+  border-color: #ffc600;
+  box-shadow: 0 0 10px #ffc600;
+}
+
+kbd{
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  color: #555;
+  font-weight: 900;
+}
+
+span.sound {
+  font-size: 1rem;
+  color: #f19f07;
+  font-weight: 900;
+}
