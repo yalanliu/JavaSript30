@@ -20,7 +20,7 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 ````
 1. `.classList`後面可以加上`.add()`或`.remove()`，可對`class`屬性裡面的值進行新增或移除，另外還有`.toggle()`和`.contains()`等方法
 2. `transitionend`事件是伴隨著`transition`結束時觸發的，所以Css裡面的`.key`需設置該屬性
-3. `querySelectorAll`與`querySelector`
+3. `querySelectorAll(selectors)`與`querySelector(selectors)`皆是取得符合的元素，但前者是回傳`NodeList`(類似Array的集合)，後者則是回傳第一個符合的元素
 
 
 ## 02_CSS + JS Clock
@@ -32,3 +32,16 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 2. `transition-timing-function`可設定動畫的速度曲線，亦可將值寫在`transition`內
 3. 由於`transition`有設定延遲0.05秒，所以會造成秒針走到0秒時會有很明顯反彈，可以再寫判斷式，當角度為90度時，將`transition`的延遲設為0。或是若不在意延遲秒數的視覺感的話，就暫不設計這個部分
 4. `setInterval(setDate, 1000)`表示每1000毫秒觸動`setDate`函式; 與`setTimeout()`不同之處在於前者會不斷觸發函式，而後者則是單次觸發
+
+
+## 03_Playing-with-CSS-Variables-and-JS
+#### 思考方向:
+1. 先利用CSS原生的變數設定各個初始值
+2. 抓到inputs的集合，用`forEach`監聽鼠標指針在指定的元素中移動和改變的事件，去更動CSS的變數中的值
+#### 筆記:
+1. CSS選取器: `:root`是一種`pseudo-class`，基本上與`<html>`相同，但前者的優先權高於後者
+2. CSS內宣告變數用法: `--custom-property-name`(前面加兩個破折號)
+3. CSS呼叫變數: `var( <custom-property-name> , <declaration-value> )`，若前者無效，則會使用`declaration-value`
+4. `filter`是CSS內的濾鏡效果，`blur`是其中一種用來控制元素模糊程度的特效
+5. `addEventListene`可監聽HTML DOM的事件[可參考MDN](https://developer.mozilla.org/zh-TW/docs/Web/Events)
+6. JS可以用`dataset`取得DOM裡設置的自定義資料屬性`data-*`
