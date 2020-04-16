@@ -22,7 +22,6 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 2. `transitionend` 事件是伴隨著 `transition` 結束時觸發的，所以 CSS 裡面的 `.key` 需設置該屬性
 3. `querySelectorAll(selectors)` 與 `querySelector(selectors)` 皆是取得符合的元素，但前者是回傳 `NodeList` (類似Array的集合)，後者則是回傳第一個符合的元素
 
-
 ## 02_CSS + JS Clock
 #### 思考方向: 
 1. 製作時鐘的秒針、分針、時針
@@ -32,7 +31,6 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 2. `transition-timing-function` 可設定動畫的速度曲線，亦可將值寫在 `transition` 內
 3. 由於 `transition` 有設定延遲 0.05秒，所以會造成秒針走到0秒時會有很明顯反彈，可以再寫判斷式，當角度為 90度 時，將 `transition` 的延遲設為0。或是若不在意延遲秒數的視覺感的話，就暫不設計這個部分
 4. `setInterval(setDate, 1000)` 表示 每1000毫秒 觸動 `setDate` 函式; 與 `setTimeout()` 不同之處在於前者會不斷觸發函式，而後者則是單次觸發
-
 
 ## 03_Playing-with-CSS-Variables-and-JS
 #### 思考方向:
@@ -60,5 +58,15 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 
 ````
   Safari transitionend event.propertyName === flex
-  Chrome + FF transitionend event.propertyName === flex-grow
+  Chrome + FireFox transitionend event.propertyName === flex-grow
 ````
+
+## 06_Ajax-Type-Ahead
+#### 思考方向:
+1. 用 `fetch` 發送請求， 再使用 `json()` 去讀取跟解析 `json` 資料，用 `then` 連結 [參考](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise)。
+2. 監聽 `input` 的 `change` 事件和 `keyup` 事件，進行 `displayMatches` 函式處理字串比對，建立了一個 `RegExp` 用於 `match` 來進行字串比對 (將此抽出獨立寫成 `findMatches` 函式)，將比對結果用 `map` 來 `return` (返回) 寫進去 HTML 中。
+
+#### 筆記:
+1. 不同於第一篇的監聽的 `keydown`，此篇是監聽 `keyup` ，會在手指離開按鍵時觸發，試著將此篇範例換成 `keydown` 卻是不合適的，會在打下一個字母時，才出現上一個字母的比對結果。 又想著既然是監聽 `keyup` ，那是否不監聽 `change` 也可有相同效果? 於是嘗試了一下是可行的。 但若反之，會與 `keydown` 出現相同的結果
+2. 第五篇也有使用到的 偽類選取器 `:nth-child(an + b)` 裡面的 `an + b` 除了可以按順序選取 `an + b項` 之外，也可以輸入關鍵字 `even(偶數) 也可寫成 2n` 或 `odd(奇數) 也可寫成 2n + 1` 
+3. 除了 `json` 之外，也有其他種解析種類， 像是: `text()` ，可[參考] (https://developer.mozilla.org/en-US/docs/Web/API/Body)
