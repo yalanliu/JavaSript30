@@ -90,7 +90,7 @@ singleParam => { statements }
 ````
 `function expression` 裡面要搭配 `return` 否則會回傳 `undefined` [參考](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/return)
 3. 許多語言具有類似的表達方法， 這一篇作者示範的方法，在 Ruby 裡也有類似的功能， 三元運算子的表達方式也很像
-4. 本篇的題目六，可再回顧第一篇的筆記第三點 `querySelectorAll(selectors)` 回傳 `NodeList` 而非 `Array` ，但可使用 `Array.from()` 或是用 `[]` 在內加上前綴 `[...]` (spread operator) 將其轉換成 `Array` 
+4. 本篇的題目六，可再回顧第一篇的筆記第三點 `querySelectorAll(selectors)` 回傳 `NodeList` 而非 `Array` ，但可使用 `Array.from()` 或是用 `[]` 在內加上前綴 `[...]` (spread syntax 擴展語法) 將其轉換成 `Array` 
 5. JavaSript 裡 `...` 有兩種， 除了上述的 `spread syntax` 另一種則是 `rest parameters`，像是第二點內有寫到的 `...rest` 就是其一範例
 6. 最後一題讓我想到之前寫 Ruby 時練習的一題，概念有點類似，可以一起搭配著 [參考](https://medium.com/@lanya4190/03-94b12155fdd)
 
@@ -120,3 +120,27 @@ singleParam => { statements }
 1. 不同於第一篇的監聽的 `keydown`，此篇是監聽 `keyup` ，會在手指離開按鍵時觸發，試著將此篇範例換成 `keydown` 卻是不合適的，會在打下一個字母時，才出現上一個字母的比對結果。 又想著既然是監聽 `keyup` ，那是否不監聽 `change` 也可有相同效果? 於是嘗試了一下是可行的。 但若反之，會與 `keydown` 出現相同的結果
 2. 第五篇也有使用到的 偽類選取器 `:nth-child(an + b)` 裡面的 `an + b` 除了可以按順序選取 `an + b項` 之外，也可以輸入關鍵字 `even(偶數) 也可寫成 2n` 或 `odd(奇數) 也可寫成 2n + 1` 
 3. 除了 `json` 之外，也有其他種解析種類， 像是: `text()` ，可[參考] (https://developer.mozilla.org/en-US/docs/Web/API/Body)
+
+## 07_Array-Cardio-Day2
+#### 思考方向及筆記:
+1. Array.prototype.some() 練習
+題目: 確認陣列 people 中是否有19歲以上的人?
+用第二篇練習過的 `new Date()` ，先取得當前時區的時間，再用 `getFullYear()` 取得四位數的年份，取得後與陣列中的年份相減
+並用 `some()` 進行判斷，回傳布林值
+2. Array.prototype.every() 練習
+題目: 確認陣列 people 中是否所有人都19歲以上?
+與上題類似，差別在於用 `every()` 進行判斷，只要有一筆不符合即回傳 `false`
+3. Array.prototype.find() 練習
+題目: 找出陣列 comments 之中 id 為 823423 的第一筆資料
+與 `Array.prototype.filter()` 類似，差別是 `find()` 僅回傳符合條件的第一筆資料
+4. `Array.prototype.findIndex()` 搭配 `Array.prototype.splice()` 及 練習
+題目: 找出陣列 comments 之中 id 為 823423 的資料索引值, 並透過索引值刪除這筆資料
+有兩種刪除這筆資料(或是取得不含該筆資料)的方式:
+
+(1) `Array.prototype.splice()` 
+`splice()` 可以用來刪除或加入陣列中的元素，改變原始陣列
+[參考](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+ 
+(2) `spread syntax`  搭配 `Array.prototype.slice()`
+`slice()` 可以回傳一個新陣列物件，而原本的陣列不會被改變，利用這個語法取得這筆以外的前後資料，再用 `spread syntax` 來展開陣列
+[參考](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
