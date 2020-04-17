@@ -44,6 +44,56 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 5. `addEventListene` 可監聽 HTML DOM 的事件 [可參考MDN](https://developer.mozilla.org/zh-TW/docs/Web/Events)
 6. JavaSript 可以用 `dataset` 取得 DOM 裡設置的自定義資料屬性 `data-*`
 
+## 04_Array-Cardio-Day1
+#### 思考方向:
+這一篇作者用八個題目來示範取得 Array 內資料的方法。
+第一至五題 
+陣列 inventors 是一個包著數個 Object 的 Array，練習以下語法
+1. `Array.prototype.filter()`
+2. `Array.prototype.map()`
+3. `Array.prototype.sort()`
+4. `Array.prototype.reduce()`
+5. `Array.prototype.sort()` 將數字型態的值搭配簡單運算，再進行排序
+第六題
+綜合數個概念至維基取得所要的資料，練習以下語法
+1. 將 `nodeList` 轉成 `Array`
+2. `.includes()` (請見第五篇的筆記)
+3. `Array.prototype.filter()`
+4. `Array.prototype.map()`
+第七題
+`Array.prototype.sort()` 搭配 `split()` 將字串型態的值切開，再進行排序
+第八題
+`Array.prototype.reduce()` 也利用起始值設計成空的物件 `{} (Object)`，再做判斷決定物件內容
+#### 筆記:
+1. `console.table` 可將數據以表格形式顯示在瀏覽器的控制台，還有其他選項 [參考](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+2. `arrow function expression` [(箭頭函式)](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 可以簡化 `function expression` 的語法
+````
+//// function expression 
+
+function name([param[, param[, ... param]]]) {
+  statements
+  return expression
+}
+
+//// arrow function expression
+
+(param1 = defaultValue1, param2, ...rest) => { statements } 
+(param1, param2, …, paramN) => expression
+// equivalent to: => { return expression; }
+
+// Parentheses are optional when there's only one parameter name:
+(singleParam) => { statements }
+singleParam => { statements }
+
+// The parameter list for a function with no parameters should be written with a pair of parentheses.
+() => { statements }
+````
+`function expression` 裡面要搭配 `return` 否則會回傳 `undefined` [參考](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/return)
+3. 許多語言具有類似的表達方法， 這一篇作者示範的方法，在 Ruby 裡也有類似的功能， 三元運算子的表達方式也很像
+4. 本篇的題目六，可再回顧第一篇的筆記第三點 `querySelectorAll(selectors)` 回傳 `NodeList` 而非 `Array` ，但可使用 `Array.from()` 或是用 `[]` 在內加上前綴 `[...]` (spread operator) 將其轉換成 `Array` 
+5. JavaSript 裡 `...` 有兩種， 除了上述的 `spread syntax` 另一種則是 `rest parameters`，像是第二點內有寫到的 `...rest` 就是其一範例
+6. 最後一題讓我想到之前寫 Ruby 時練習的一題，概念有點類似，可以一起搭配著 [參考](https://medium.com/@lanya4190/03-94b12155fdd)
+
 ## 05_Flex-Panels-Image-Gallery
 #### 思考方向:
 這篇著重在CSS排版的部分， JavaSript 的思考方向與第一篇 (JavaScript-Drum-Kit) 較雷同
