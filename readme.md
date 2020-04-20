@@ -144,3 +144,32 @@ singleParam => { statements }
 (2) `spread syntax`  搭配 `Array.prototype.slice()`
 `slice()` 可以回傳一個新陣列物件，而原本的陣列不會被改變，利用這個語法取得這筆以外的前後資料，再用 `spread syntax` 來展開陣列
 [參考](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+## 08_Fun-with-HTML5-Canvas
+#### 步驟:
+1. 在 HTML 建立一個 `<canvas>` 區塊
+2. 利用 JavaSript `document.querySelector` 取得該物件
+3. 該物件可使用 `.getContext('2d')` 取得渲染環境 [參考 MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Basic_usage)
+4. `ctx` 可試著在瀏覽器的控制台印出來，可看到有許多值可以定義，或者也可以從 [MDN] (https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) 找到相關資訊
+![](08_pic.png)
+5. 監聽 `canvas` 的滑鼠事件
+(1) `mousemove` 滑鼠移動時，執行函式 `draw`，函式內第一行即判斷 `isDrawing` 定是否執行該函式
+(2) `mousedown` 當滑鼠按下時，並將目前的滑鼠位置，設定成繪畫時的起始位置， `isDrawing` 設成 `true`
+(3) `mouseup` 滑鼠放開時， `isDrawing` 設成 `false`
+(4) `mouseout` 滑鼠離開 `canvas` 元素時， `isDrawing` 設成 `false` ，可是如果想要移開後回來有畫圖連續性感覺時，這個事件可看需求性決定是否需要
+6.  函式 `draw` 內開始設定繪畫的相關值，一樣可從步驟 4 的連結找到相關資訊
+7. 這個範例額外做了兩個按鈕來決定開始繪畫和清空畫布的效果，清空畫布可使用 `.clearRect(x, y, width, height)` 來設定起始座標和範圍內的像素為透明，用來清除原本的內容
+#### 筆記:
+1. 定義線條樣式
+(1) strokeStyle 線條顏色
+(2) lineWidth 線條寬度
+(3) lineJoin 線條交接處樣式
+(4) lineCap 線條開始結束樣式
+2. 路徑 [可參考](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes)
+(1) `beginPath()` 產生新路徑
+(2) `moveTo(x, y)` 移動畫筆到指定的座標 
+(3) `lineTo(x, y)` 從目前繪畫點劃一條直線到指定座標
+(4) `stroke()` 劃出圖形
+3. 邏輯運算子 (Logical Operator) `!` (NOT) 來判斷或轉換布林值(Boolean)，例如: `!drawing` 和 `direction = !direction`
+4. 利用 `hsl` 中 色相值的遞增，使畫筆顏色有彩虹效果，而 `lineWidth` 也利用遞增及遞減的手法，讓畫筆具粗細變化。這邊要記得，遞增或遞減值要根據特性設定範圍，避免無限增減，適時再加上判斷(direction的設計)
+5. `globalCompositeOperation()` 可以設定顏色相疊的效果 [參考](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
