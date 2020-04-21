@@ -65,7 +65,7 @@ const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //其中.k�
 第八題
 `Array.prototype.reduce()` 也利用起始值設計成空的物件 `{} (Object)`，再做判斷決定物件內容
 #### 筆記:
-1. `console.table` 可將數據以表格形式顯示在瀏覽器的控制台，還有其他選項 [參考](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+1. `console.table` 可將數據以表格形式顯示在瀏覽器的控制台，還有其他選項，在第9篇有更詳細的介紹 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console)
 2. `arrow function expression` [(箭頭函式)](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 可以簡化 `function expression` 的語法
 ````
 //// function expression 
@@ -119,7 +119,7 @@ singleParam => { statements }
 #### 筆記:
 1. 不同於第一篇的監聽的 `keydown`，此篇是監聽 `keyup` ，會在手指離開按鍵時觸發，試著將此篇範例換成 `keydown` 卻是不合適的，會在打下一個字母時，才出現上一個字母的比對結果。 又想著既然是監聽 `keyup` ，那是否不監聽 `change` 也可有相同效果? 於是嘗試了一下是可行的。 但若反之，會與 `keydown` 出現相同的結果
 2. 第五篇也有使用到的 偽類選取器 `:nth-child(an + b)` 裡面的 `an + b` 除了可以按順序選取 `an + b項` 之外，也可以輸入關鍵字 `even(偶數) 也可寫成 2n` 或 `odd(奇數) 也可寫成 2n + 1` 
-3. 除了 `json` 之外，也有其他種解析種類， 像是: `text()` ，可[參考] (https://developer.mozilla.org/en-US/docs/Web/API/Body)
+3. 除了 `json` 之外，也有其他種解析種類， 像是: `text()` ，可 [參考](https://developer.mozilla.org/en-US/docs/Web/API/Body)
 
 ## 07_Array-Cardio-Day2
 #### 思考方向及筆記:
@@ -150,7 +150,7 @@ singleParam => { statements }
 1. 在 HTML 建立一個 `<canvas>` 區塊
 2. 利用 JavaSript `document.querySelector` 取得該物件
 3. 該物件可使用 `.getContext('2d')` 取得渲染環境 [參考 MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API/Tutorial/Basic_usage)
-4. `ctx` 可試著在瀏覽器的控制台印出來，可看到有許多值可以定義，或者也可以從 [MDN] (https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) 找到相關資訊
+4. `ctx` 可試著在瀏覽器的控制台印出來，可看到有許多值可以定義，或者也可以從 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) 找到相關資訊
 ![](08_pic.png)
 5. 監聽 `canvas` 的滑鼠事件
 (1) `mousemove` 滑鼠移動時，執行函式 `draw`，函式內第一行即判斷 `isDrawing` 定是否執行該函式
@@ -173,3 +173,22 @@ singleParam => { statements }
 3. 邏輯運算子 (Logical Operator) `!` (NOT) 來判斷或轉換布林值(Boolean)，例如: `!drawing` 和 `direction = !direction`
 4. 利用 `hsl` 中 色相值的遞增，使畫筆顏色有彩虹效果，而 `lineWidth` 也利用遞增及遞減的手法，讓畫筆具粗細變化。這邊要記得，遞增或遞減值要根據特性設定範圍，避免無限增減，適時再加上判斷(direction的設計)
 5. `globalCompositeOperation()` 可以設定顏色相疊的效果 [參考](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
+
+## 09_Must-Know-Dev-Tools-Tricks
+#### 主題
+這一篇在講解各種 `console` 的用法 [參考 MDN](https://developer.mozilla.org/en-US/docs/Web/API/Console)
+#### 筆記
+1. `console.log('%s', 'string')` 可將 `%s` 用後述的指定參數代替，不一定只使用在  `console.log()` 也可使用在像是 `console.warn()`  裡面
+2. `console.log('%c', 'style')` 可將 CSS 樣式於控制台中輸出，不一定只使用在  `console.log()` 也可使用在像是 `console.warn()`  裡面
+3. 瀏覽器的控制台 裡面有一個 Log level 可以依據等級選取出現的訊息
+  (1) Verbose 層級 - 以 `console.debug()` 寫訊息，會出現在該層級
+  (2) Info 層級 - `console.info()` 顯示 info 圖示及訊息，非其餘三者寫法，皆屬於這個層級
+  (3) Warning 層級 - `console.warn()` 顯示警示圖示及訊息
+  (4) Errors 層級 - `console.error()` 顯示錯誤圖示及訊息
+4. `console.assert(assertion, message)` 用來判斷 `assertion` 的真假，若為 `false` 則印出 `message` 內容
+5. `console.clear()` 清除 console 的所有訊息，控制台上亦有該鈕可以使用
+6. `console.dir()` 除了可以印出本身的內容(`console.log()`的作用)外，還可顯示該物件的所有屬性
+7. `console.group(label)` (預設打開) 或 `console.groupCollapsed(label)` (預設關閉) 搭配 `consle.groupEnd(label)` 可將寫在裡面的資訊以群組方式呈現，但亦可寫兩層群組但，同一層的 `label` 要寫一樣的內容
+8. `console.count()` 用來計算累加出現的次數
+9. `console.time(lable)` 搭配 `console.timeEnd(label)` 用來計算區域內的執行時間， `label` 要寫一樣的內容
+10. `console.table` 可將數據以表格形式顯示，在第4篇練習時，有大量使用到這個用法，視覺上較 `console.log()` 方便觀看
