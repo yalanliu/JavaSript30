@@ -1,0 +1,38 @@
+html{
+  background-color: #ffc600;
+}
+
+.inbox {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.item:last-child {
+  border-bottom:0;
+}
+
+input:checked + p {
+  background-color:#F9F9F9;
+  text-decoration: line-through;
+}
+
+input {
+  margin:20px;
+}
+
+p {
+  margin:0;
+  padding:20px;
+  transition: background-color 0.2s;
+  flex:1;
+  font-size: 15px;
+  border-left: 1px solid #D1E2FF;
+}

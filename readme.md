@@ -89,6 +89,7 @@ singleParam => { statements }
 () => { statements }
 ````
 `function expression` 裡面要搭配 `return` 否則會回傳 `undefined` [參考](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/return)
+
 3. 許多語言具有類似的表達方法， 這一篇作者示範的方法，在 Ruby 裡也有類似的功能， 三元運算子的表達方式也很像
 4. 本篇的題目六，可再回顧第一篇的筆記第三點 `querySelectorAll(selectors)` 回傳 `NodeList` 而非 `Array` ，但可使用 `Array.from()` 或是用 `[]` 在內加上前綴 `[...]` (spread syntax 擴展語法) 將其轉換成 `Array` 
 5. JavaSript 裡 `...` 有兩種， 除了上述的 `spread syntax` 另一種則是 `rest parameters`，像是第二點內有寫到的 `...rest` 就是其一範例
@@ -192,3 +193,13 @@ singleParam => { statements }
 8. `console.count()` 用來計算累加出現的次數
 9. `console.time(lable)` 搭配 `console.timeEnd(label)` 用來計算區域內的執行時間， `label` 要寫一樣的內容
 10. `console.table` 可將數據以表格形式顯示，在第4篇練習時，有大量使用到這個用法，視覺上較 `console.log()` 方便觀看
+
+## 10_Hold-Shift-to-Check-Multiple-Checkboxes
+#### 步驟
+1. 利用 `querySelectorAll(selectors)` 選取所有的 `input[tyye="checkbox"]`
+2. 對 `checkboxes` 裡的每一個 `checkbox` 監聽事件 `click` 觸發 `handleCheck` 函式
+3. 建立了區域變數 `let inBetween = false` 最為選取區間時的標記判斷，若按著 shift 鍵和 checkbox 被選取時，再一次對所有 checkboxes 進行範圍內標記 `let inBetween = true` ， 最後若 `inBetween = true` 則使其皆會被選取
+#### 筆記
+1. `input:checked + p` 其中的 `+` 表示具有相同父元素的，其中第二個元素緊跟在第一個元素之後，第二個元素將會被選取 [參考 MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator)
+2. `text-decoration: line-through` 表示  `刪除線`
+
