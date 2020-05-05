@@ -203,3 +203,19 @@ singleParam => { statements }
 1. `input:checked + p` 其中的 `+` 表示具有相同父元素的，其中第二個元素緊跟在第一個元素之後，第二個元素將會被選取 [參考 MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_combinator)
 2. `text-decoration: line-through` 表示  `刪除線`
 
+## 11_Custom-HTML5-Video-Player
+#### 步驟
+1. 監聽播放/暫停按鈕的 `click` 事件，觸發 `togglePlay()`。 利用判斷式使影片播放或暫停 `video[method]()`，並使 icon 相對應的更換
+2. 監聽 `video` 的 `timeupdate` 事件，觸發 `handleProgres()`。 利用 `video` 的 `currenTime` 與 `duration` 計算出播放進度比例，再動態修改 CSS 進度條的色塊比例
+3. 監聽快進/後退按鈕的 `click` 事件，觸發 `skip()`。 已經有在 HTML 中設定 `data-skip` 的值， 所以在 JavaScript 中用 `dataset.skip` 來取出與 `currentTime` 進行加總。
+4. 音量調節和播放速率調節是使用 `input 中的 range` ，因為監聽該元素的 `change` 和 `mouseover` 事件，觸發 `handleRangeUpdate` 。name 的命名 `volume` 與 `playbackRate` 是 video 本身的屬性，與步驟一操作屬性方法類似，這邊將要給的值寫在 value。 (可回顧第三篇也是使用相同手法)
+5. 銜接步驟一，進度條除了顯示之外，也需要滑鼠拖曳進度條使進度也隨之改變的功能。
+(1) 監聽事件 `click (點擊)` 以及 按住滑鼠拖曳(有點類似第八篇的畫畫)，這邊要監聽三種滑鼠狀態 `mousemove` 、 `mousedown` 以及 `mousep`，並先設定一個變數 flag `mousedown = false` 來操作狀態
+(3) `mousedown` 當滑鼠按下時，將變數 flag `mousedown` 設成 `true`
+(4) `mouseup` 滑鼠放開時，將變數 flag `mousedown` 設成 `false`
+(4) `mousemove` 滑鼠移動時，先判斷如果 mousedown = true 就執行函式 `scrub(e)` ，利用 `e.offsetX` 的位置及 `progress.offsetWidth` 寬度與影片總長來計算當前秒數
+6. 監聽全螢幕按鈕的 `click` 事件，觸發 `fullScreen()` 。使用 video 其中的方法 `video.requestFullscreen()` [參考 MDN](https://developer.mozilla.org/zh-TW/docs/Web/API/Fullscreen_API)
+7. 監聽鍵盤動作 `keydown` 中的空白鍵、左鍵及右鍵，觸發與步驟一和二的函式
+#### 筆記
+1. video 可以操作的屬性，像是此篇出現的 `play()` 、 `currentTime` 、 `volume` 、 `playbackRate` ...等，可以參考 [MDN-HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) 和 [MDN-video](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+2. 各個瀏覽器對於 video 可能會有不同的預設值，所以某些部分需要針對各個瀏覽器寫出來，像是此篇的 input-range 樣式和全螢幕的部分
